@@ -11,6 +11,8 @@ import UIKit
 class TopViewController: UITableViewController {
 
     private var entitiesList: [EntityModel] = []
+    private var after: String? = nil
+    private var sessionTask: URLSessionTask?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +21,12 @@ class TopViewController: UITableViewController {
         tableView.estimatedRowHeight = 40
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadData(after: after)
+    }
+    
     // MARK: - Table view data source
     
     let cellWithThumbnailIdentifier = "CellWithThumbnailIdentifier"
@@ -48,6 +56,34 @@ class TopViewController: UITableViewController {
             cell.imgThumbnail?.image = UIImage(named: "icon-no-thumbnail")
         }
         return cell
+    }
+    
+}
+
+extension TopViewController {
+    
+    func loadData(after: String?) {
+        if sessionTask != nil {
+            sessionTask?.cancel()
+        }
+        
+        sessionTask = WebService.getTopReddit(after: after, range: .all) { [weak self] (data, after, error) in
+            guard let strongSelf = self else { return }
+
+            strongSelf.after = after
+            if error != nil {
+                strongSelf.showErrorAlert(text: error!.localizedDescription)
+            } else if data != nil {
+                if strongSelf.after != nil {
+                    strongSelf.entitiesList += data!
+                } else {
+                    strongSelf.entitiesList = data!
+                }
+                strongSelf.tableView.reloadData()
+            } else {
+                strongSelf.showErrorAlert(text: "Couldn't retrieve data")
+            }
+        }
     }
     
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E79C783C206CDACF008B824F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79C783B206CDACF008B824F /* Util.swift */; };
 		E79C783F206D00F3008B824F /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = E79C7841206D00F3008B824F /* Localizable.stringsdict */; };
+		E79C7847206D242F008B824F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79C7846206D242F008B824F /* Constants.swift */; };
+		E79C7849206D27EF008B824F /* AlertExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79C7848206D27EF008B824F /* AlertExtension.swift */; };
 		E7F264A4206BD60C00F22CA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F264A3206BD60C00F22CA0 /* AppDelegate.swift */; };
 		E7F264A6206BD60C00F22CA0 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F264A5206BD60C00F22CA0 /* TopViewController.swift */; };
 		E7F264A9206BD60C00F22CA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7F264A7206BD60C00F22CA0 /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		E79C783B206CDACF008B824F /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		E79C7840206D00F3008B824F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		E79C7846206D242F008B824F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E79C7848206D27EF008B824F /* AlertExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertExtension.swift; sourceTree = "<group>"; };
 		E7F264A0206BD60C00F22CA0 /* RedditTop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditTop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7F264A3206BD60C00F22CA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E7F264A5206BD60C00F22CA0 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				E79C783B206CDACF008B824F /* Util.swift */,
+				E79C7846206D242F008B824F /* Constants.swift */,
+				E79C7848206D27EF008B824F /* AlertExtension.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -273,6 +279,8 @@
 				E79C783C206CDACF008B824F /* Util.swift in Sources */,
 				E7F264CD206BD7C900F22CA0 /* TopTableViewCell.swift in Sources */,
 				E7F264D3206C1C5900F22CA0 /* PreviewViewController.swift in Sources */,
+				E79C7849206D27EF008B824F /* AlertExtension.swift in Sources */,
+				E79C7847206D242F008B824F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

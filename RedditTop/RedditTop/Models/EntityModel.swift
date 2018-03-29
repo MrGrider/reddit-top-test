@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EntityModel: NSObject {
+public class EntityModel: NSObject {
     
     let title: String!
     let author: String!
@@ -17,7 +17,7 @@ class EntityModel: NSObject {
     var thumbnail: String?
     var images: [String]?
 
-    init(withJsonDictionary json: [String: Any]) {
+    public init(withJsonDictionary json: [String: Any]) {
         let data = json["data"] as! [String: Any]
         self.title = data["title"] as! String
         self.author = data["author"] as! String
