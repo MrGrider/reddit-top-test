@@ -17,13 +17,12 @@ class TopViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 40
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         self.loadData(after: after)
     }
     
@@ -58,9 +57,22 @@ class TopViewController: UITableViewController {
         return cell
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator .animate(alongsideTransition: { [weak self] (context) in
+            self?.tableView.beginUpdates()
+            self?.tableView.endUpdates()
+        }, completion: nil)
+    }
+    
 }
 
 extension TopViewController {
+    
+    @objc func refresh() {
+        self.loadData(after: nil)
+    }
     
     func loadData(after: String?) {
         if sessionTask != nil {
@@ -69,7 +81,11 @@ extension TopViewController {
         
         sessionTask = WebService.getTopReddit(after: after, range: .all) { [weak self] (data, after, error) in
             guard let strongSelf = self else { return }
-
+            
+            if strongSelf.refreshControl!.isRefreshing {
+                strongSelf.refreshControl!.endRefreshing()
+            }
+            
             strongSelf.after = after
             if error != nil {
                 strongSelf.showErrorAlert(text: error!.localizedDescription)

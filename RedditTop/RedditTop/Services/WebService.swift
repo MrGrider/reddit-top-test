@@ -39,7 +39,7 @@ public final class WebService<T> where T: Any {
 public extension WebService where T == EntityModel {
     
     public class func getTopReddit(after: String? = nil, range: PostsDatesRange = .all, completion: @escaping ((_ entities: [T]?,_ last: String?,_ error: Error?)->Void))->URLSessionTask {
-        var requestString = "https://www.reddit.com/r/all/top.json?t=\(range)"
+        var requestString = "https://www.reddit.com/r/all/top.json?limit=50&t=\(range)"
         if after != nil {
             requestString += "&after=\(after!)"
         }
