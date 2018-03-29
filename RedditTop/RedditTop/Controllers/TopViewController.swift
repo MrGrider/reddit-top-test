@@ -51,8 +51,10 @@ class TopViewController: UITableViewController {
         cell.lblCommentsCount.text = String(format: NSLocalizedString("%d comments", comment: ""), entity.commentsCount)
         cell.lblPreviewAvailable?.isHidden = entity.images?.count == 0
         if entity.thumbnail != nil {
-            // TODO: implement image loading
             cell.imgThumbnail?.image = UIImage(named: "icon-no-thumbnail")
+            ImageService.getImage(forURL: entity.thumbnail!, completion: { (image) in
+                cell.imgThumbnail?.image = image
+            })
         }
         return cell
     }
