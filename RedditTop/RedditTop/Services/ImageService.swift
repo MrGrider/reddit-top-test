@@ -33,9 +33,10 @@ public final class ImageService {
             })
         } else if (storedData as AnyObject).isKind(of: UIImage.self) {
             completion(storedData as? UIImage)
-        } else if (storedData as! Int) != -1 {
+        } else if (storedData as AnyObject).isKind(of: NSArray.self) {
             var observersList: [Completion] = storedData as! [Completion]
             observersList.append(completion)
+            imageService.imagesStorage[URLString] = observersList
         }
     }
     

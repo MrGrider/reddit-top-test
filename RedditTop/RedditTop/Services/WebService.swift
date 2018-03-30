@@ -15,6 +15,11 @@ public final class WebService<T> where T: Any {
         let session = URLSession.shared
         let dataTask: URLSessionDataTask
         dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
+            if error != nil {
+                let code = (error! as NSError).code
+                guard code != -999 else { completion(nil, nil); return }
+            }
+            
             let httpResponse = response as? HTTPURLResponse
             let statusCode = httpResponse?.statusCode
             if data != nil && error == nil && statusCode == 200 {

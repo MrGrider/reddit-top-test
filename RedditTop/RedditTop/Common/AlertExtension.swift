@@ -10,9 +10,9 @@ import UIKit
 
 public extension UIViewController {
     
-    func showErrorAlert(text: String) {
-        let alertController = UIAlertController.init(title: "Error",
-                                                     message: text,
+    func showAlertWithOkButton(text: String) {
+        let alertController = UIAlertController.init(title: text,
+                                                     message: nil,
                                                      preferredStyle: .alert)
         let alertAction = UIAlertAction.init(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(alertAction)

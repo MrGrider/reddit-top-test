@@ -25,6 +25,14 @@ class TopViewController: UITableViewController {
 
         self.loadData(after: after)
     }
+        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if sessionTask != nil {
+            sessionTask?.cancel()
+        }
+    }
     
     // MARK: - Table view data source
     
@@ -84,13 +92,15 @@ extension TopViewController {
         sessionTask = WebService.getTopReddit(after: after, range: .all) { [weak self] (data, after, error) in
             guard let strongSelf = self else { return }
             
+            strongSelf.sessionTask = nil
+            
             if strongSelf.refreshControl!.isRefreshing {
                 strongSelf.refreshControl!.endRefreshing()
             }
             
             strongSelf.after = after
             if error != nil {
-                strongSelf.showErrorAlert(text: error!.localizedDescription)
+                strongSelf.showAlertWithOkButton(text: error!.localizedDescription)
             } else if data != nil {
                 if strongSelf.after != nil {
                     strongSelf.entitiesList += data!
@@ -98,8 +108,6 @@ extension TopViewController {
                     strongSelf.entitiesList = data!
                 }
                 strongSelf.tableView.reloadData()
-            } else {
-                strongSelf.showErrorAlert(text: "Couldn't retrieve data")
             }
         }
     }

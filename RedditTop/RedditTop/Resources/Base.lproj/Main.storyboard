@@ -85,6 +85,7 @@
                                         <constraint firstItem="4ak-29-C0u" firstAttribute="top" secondItem="7w6-fd-cw3" secondAttribute="bottom" constant="4" id="kcf-iX-Qah"/>
                                         <constraint firstItem="XHT-fB-JGL" firstAttribute="bottom" secondItem="oUR-wv-fba" secondAttribute="bottomMargin" id="ktp-SG-fzu"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="7w6-fd-cw3" secondAttribute="trailing" id="s51-eF-fZu"/>
+                                        <constraint firstItem="Ngb-fq-I0d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oUR-wv-fba" secondAttribute="leading" constant="20" symbolic="YES" id="sWI-sL-01f"/>
                                         <constraint firstItem="hEm-j1-gxi" firstAttribute="leading" secondItem="oUR-wv-fba" secondAttribute="leadingMargin" id="vKV-Wn-X0W"/>
                                         <constraint firstItem="Ngb-fq-I0d" firstAttribute="trailing" secondItem="hEm-j1-gxi" secondAttribute="trailing" id="yZh-KP-rgr"/>
                                     </constraints>
@@ -170,21 +171,66 @@
             </objects>
             <point key="canvasLocation" x="-535" y="140"/>
         </scene>
-        <!--Title-->
+        <!--Preview-->
         <scene sceneID="WHO-St-hiM">
             <objects>
                 <viewController storyboardIdentifier="PreviewViewController" id="1fh-tB-Q8F" customClass="PreviewViewController" customModule="RedditTop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bGS-da-7Ct">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfy-WR-aFH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="529"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDW-rA-1Ro">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" placeholder="YES" id="O93-fN-1gA"/>
+                                            <constraint firstAttribute="height" constant="529" placeholder="YES" id="waf-V3-pX4"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="xDW-rA-1Ro" secondAttribute="trailing" id="FlS-Ln-Mdv"/>
+                                    <constraint firstItem="xDW-rA-1Ro" firstAttribute="leading" secondItem="Tfy-WR-aFH" secondAttribute="leading" id="b4C-z2-Q7H"/>
+                                    <constraint firstItem="xDW-rA-1Ro" firstAttribute="top" secondItem="Tfy-WR-aFH" secondAttribute="top" id="d3a-BY-QIl"/>
+                                    <constraint firstAttribute="bottom" secondItem="xDW-rA-1Ro" secondAttribute="bottom" id="gZ4-3C-K8l"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="1fh-tB-Q8F" id="Gm1-XW-WCH"/>
+                                </connections>
+                            </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="vSs-V4-PE0">
+                                <rect key="frame" x="168" y="593" width="39" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="RFZ-Yh-lOD"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </pageControl>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vSs-V4-PE0" firstAttribute="centerX" secondItem="bGS-da-7Ct" secondAttribute="centerX" id="5rN-NA-sDT"/>
+                            <constraint firstItem="vSs-V4-PE0" firstAttribute="top" secondItem="Tfy-WR-aFH" secondAttribute="bottom" id="7Re-T6-BC7"/>
+                            <constraint firstItem="Cvx-Jo-SKC" firstAttribute="trailing" secondItem="Tfy-WR-aFH" secondAttribute="trailing" id="PTR-qQ-l7Z"/>
+                            <constraint firstItem="Tfy-WR-aFH" firstAttribute="leading" secondItem="Cvx-Jo-SKC" secondAttribute="leading" id="YM3-hB-Bw7"/>
+                            <constraint firstItem="Cvx-Jo-SKC" firstAttribute="bottom" secondItem="vSs-V4-PE0" secondAttribute="bottom" id="evP-56-JMu"/>
+                            <constraint firstItem="Tfy-WR-aFH" firstAttribute="top" secondItem="Cvx-Jo-SKC" secondAttribute="top" id="jMu-Km-fQI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Cvx-Jo-SKC"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Title" id="Qsp-J3-Rjk">
+                    <navigationItem key="navigationItem" title="Preview" id="Qsp-J3-Rjk">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="g8O-nb-Gal">
                             <connections>
                                 <action selector="cancel:" destination="1fh-tB-Q8F" id="d07-kL-X5z"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="eIQ-VQ-X0N">
+                            <connections>
+                                <action selector="save:" destination="1fh-tB-Q8F" id="l1S-j3-TJI"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -193,10 +239,15 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="contentView" destination="xDW-rA-1Ro" id="fbb-55-Xam"/>
+                        <outlet property="pageControl" destination="vSs-V4-PE0" id="4oq-od-V3c"/>
+                        <outlet property="scrollView" destination="Tfy-WR-aFH" id="UPP-LK-yWT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Vd-Oh-1sM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="417" y="869"/>
+            <point key="canvasLocation" x="416.80000000000001" y="868.51574212893559"/>
         </scene>
     </scenes>
 </document>
