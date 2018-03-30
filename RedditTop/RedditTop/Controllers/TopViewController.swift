@@ -57,7 +57,7 @@ class TopViewController: UITableViewController {
         cell.lblTitle.text = entity.title
         cell.lblDate.text = "\(Util.timeAgo(since: entity.timestamp)) by \(entity.author!)"
         cell.lblCommentsCount.text = String(format: NSLocalizedString("%d comments", comment: ""), entity.commentsCount)
-        cell.lblPreviewAvailable?.isHidden = entity.images?.count == 0
+        cell.lblPreviewAvailable?.isHidden = entity.images == nil 
         if entity.thumbnail != nil {
             cell.imgThumbnail?.image = UIImage(named: "icon-no-thumbnail")
             ImageService.getImage(forURL: entity.thumbnail!, completion: { (image) in
@@ -119,6 +119,7 @@ extension TopViewController: PreviewPresentorProtocol {
     func presentPreview(forCell cell: UITableViewCell) {
         let index = tableView.indexPath(for: cell)?.row
         let entity = entitiesList[index!]
+        guard entity.images != nil else { return }
         
         let previewController = storyboard?.instantiateViewController(withIdentifier: "PreviewViewController") as! PreviewViewController
         previewController.entity = entity
